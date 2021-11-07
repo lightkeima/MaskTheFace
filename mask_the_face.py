@@ -133,6 +133,10 @@ if is_directory:
                 tqdm.write(str_p)
 
             split_path = f.rsplit(".")
+            split0 = ""
+            for i  in range(len(split_path) -1):
+                split0 += split_path[i]
+            split_path = [split0,split_path[-1]]
             masked_image, mask, mask_binary_array, original_image = mask_image(
                 image_path, args
             )
@@ -147,6 +151,7 @@ if is_directory:
                     + split_path[1]
                 )
                 img = masked_image[i]
+                print(w_path)
                 cv2.imwrite(w_path, img)
 
     print_orderly("Masking image directories", 60)
